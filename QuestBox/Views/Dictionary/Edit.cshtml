@@ -1,0 +1,14 @@
+﻿@model object
+    <form method="post" data-ajax="true" data-ajax-method="Edit">
+        <input type="hidden" name="id" value="@Model.GetType().GetProperty("Id").GetValue(Model).ToString()" />
+        <input type="hidden" name="typeOfDictionary" value="@ViewBag.DictionaryName" />
+        @foreach (var item in (Dictionary<string, string>)ViewBag.Headlines)
+        {
+            @(item.Value)
+            @if (!item.Key.ToLower().Contains("tostring"))
+            {
+                <input type="text" name="@item.Key" class="form-control" id="@item.Key" value="@(Model.GetType().GetProperty(item.Key).GetValue(Model)?.ToString())" />
+            }
+        }
+        <input type="submit" />
+    </form>

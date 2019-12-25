@@ -1,0 +1,13 @@
+﻿@model List<QuestBox.Models.Users>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <p>
+            @item.Name
+        </p>
+    }
+</div>

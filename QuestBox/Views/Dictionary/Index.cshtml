@@ -1,0 +1,43 @@
+﻿@model List<object>
+@{
+    ViewData["Title"] = "Index";
+}
+    <table class="table">
+        <tr>
+            @foreach (var item in ((Dictionary<string, string>)ViewBag.Headlines))
+            {
+                <th>
+                    @item.Value
+                </th>
+            }
+        </tr>
+        
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                @foreach (var item in ((Dictionary<string, string>)ViewBag.Headlines))
+                {
+                <td>
+                    @if((item.Key.ToLower().Contains("tostring")))
+                    {
+                        Model[i].ToString();
+                    }
+                    @if (item.Value == "Пол")
+                    {
+                        @(((bool)(Model[i].GetType().GetProperty(item.Key).GetValue(Model[i])) == true)?"М":"Ж")
+                    }
+                    else
+                    {
+                        @Model[i].GetType().GetProperty(item.Key).GetValue(Model[i])
+                    }
+
+                </td>
+                }
+                </tr>
+             }
+
+
+    </table>
+
+
+
